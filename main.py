@@ -3,15 +3,15 @@ import re
 import keyboard
 from time import sleep
 from datetime import date
-import sys
+from sys import exit
 
 # EASY REGIST dan REGIST ULANG
 
 layanan = {'2801': '10', '2802': '10', '2828': '20', '2887': '5', '2888': '20', '2889': '50', '2890': '100',
-           '1601': '10', '1602': '20', '1603': '30', '1604': '50', '1605': '100', '2820': '10',
-           '2830': '20', '2819': '50', '2900': '', '2901': '', '2902': '', '2903': '', '2904': '', '2905': '',
-           '2906': '', '2907': '', '2908': '', '2909': '', '2910': '', '2911': '', '2912': '', '2913': '',
-           '2914': '', '2915': '', '2916': '', '2917': '', '2918': '', '2919': '', '2920': '', '2921': ''}
+           '1601': '10', '1602': '20', '1603': '30', '1604': '50', '1605': '100', '2820': '10', '2830': '20',
+           '2819': '50', '2900': '', '2901': '', '2902': '', '2903': '', '2904': '', '2905': '', '2906': '',
+           '2907': '', '2908': '', '2909': '', '2910': '', '2911': '', '2912': '', '2913': '', '2914': '',
+           '2915': '', '2916': '', '2917': '', '2918': '', '2919': '', '2920': '', '2921': ''}
 
 
 def clear():
@@ -21,19 +21,9 @@ def clear():
 def input_sn():
     while True:
         sn = input('Masukkan SN pelanggan: ')
-        if sn[:3].lower() in ['ais', 'rcm', 'zte', 'bdc', 'vnp', 'elw']:
-            if len(sn) == 12:
-                break
-            else:
-                clear()
-                print('\nTolong masukkan sn yang benar')
-        elif len(sn) == 16:
+        if len(sn) == 12 or len(sn) == 16:
             break
-        elif sn.lower() == 'h':
-            regist()
-
         else:
-            clear()
             print('\nTolong masukkan sn yang benar')
     clear()
     return sn
@@ -141,71 +131,22 @@ def input_description():
 def input_pppoe():
     print('Apakah password PPPoE merupakan tanggal hari ini?')
     while True:
-        perlu_tidak = input('Y/N: ')
-        if perlu_tidak[0].lower() in ['y', 'n']:
+        pw_hari_ini = input('Y/N: ')
+        if pw_hari_ini[0].lower() in ['y', 'n']:
             break
-        elif perlu_tidak.lower() == 'h':
+        elif pw_hari_ini.lower() == 'h':
             regist()
         else:
             clear()
             print('\nTolong input dengan benar')
     clear()
-    if perlu_tidak == 'n':
+    if pw_hari_ini == 'n':
         while True:
-            print('Masukkan tanggal hari ini:')
-            hari = input('Hari: ')
-            if hari.lower() == 'h':
-                regist()
-            elif hari.isdigit():
-                hari = int(hari)
-                if 9 < hari < 32:
-                    hari = str(hari)
-                    break
-                elif 0 < hari < 10:
-                    hari = '0' + str(hari)
-                    break
-                else:
-                    clear()
-                    print('\nTolong input nomor tanggal dengan benar\n')
-                    continue
-        while True:
-            print('Masukkan tanggal bulan hari ini:')
-            bulan = input('Bulan: ')
-            if bulan.lower() == 'h':
-                regist()
-            elif bulan.isdigit():
-                bulan = int(bulan)
-                if 0 < bulan < 10:
-                    bulan = '0' + str(bulan)
-                    break
-                elif 9 < bulan < 13:
-                    bulan = str(bulan)
-                    break
-                else:
-                    clear()
-                    print('\nTolong input bulan dengan benar\n')
-                    continue
-
-        while True:
-            print('Masukkan tanggal tahun hari ini:')
-            tahun = input('Tahun: ')
-            if tahun.lower() == 'h':
-                regist()
-            elif tahun.isdigit():
-                tahun = int(tahun)
-                if 2000 < tahun < 2030:
-                    tahun = str(tahun)
-                    break
-                else:
-                    clear()
-                    print('\nTolong input tahun dengan benar\n')
-                    continue
-
-        password = tahun + bulan + hari
+            password = input('Masukkan password:  ')
     else:
         today = str(date.today())
-        password = today.replace('-', '')
-        clear()
+    password = today.replace('-', '')
+    clear()
     return password
 
 
@@ -696,9 +637,8 @@ def regist():
         if again == 'y':
             continue
         else:
-            sys.exit()
+            exit()
 
 
 if __name__ == '__main__':
     regist()
-
