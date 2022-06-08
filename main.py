@@ -701,4 +701,3 @@ def regist():
 
 if __name__ == '__main__':
     regist()
-
