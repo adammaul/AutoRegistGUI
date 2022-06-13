@@ -1,4 +1,4 @@
-git import os
+import os
 import re
 import keyboard
 from time import sleep
