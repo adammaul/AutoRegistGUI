@@ -2,13 +2,28 @@ import tkinter as tk
 
 root = tk.Tk()
 
-button = tk.Button(
-    text="Click me!",
+header = tk.Label(
+    text="EZ-Regist",
+    fg="white",
+    bg="black",
+    width=10,
+    height=10
+)
+
+regist_pertama = tk.Button(
+    text="Regist Pertama",
     width=25,
     height=5,
-    bg="black",
-    fg="white",
 )
+
+regist_ulang = tk.Button(
+    text="Regist Ulang / Replace",
+    width=25,
+    height=5,
+)
+
+header.pack()
+regist_pertama.grid()
 
 button.pack()
 
