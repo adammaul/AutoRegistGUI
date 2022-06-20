@@ -1,13 +1,16 @@
 import tkinter as tk
+from tkinter import ttk
 
 root = tk.Tk()
 
-header = tk.Label(
+header = ttk.Label(
+    root,
     text="EZ-Regist",
     width=25,
     height=5
 )
-regist_pertama = tk.Button(
+regist_pertama = ttk.Button(
+    root,
     text="Regist Pertama",
     width=25,
     height=5,
